@@ -187,6 +187,7 @@ const playerReset = () => {
     player.pos.x = (arena[0].length / 2 | 0) - (player.matrix[0].length / 2 | 0);
     if (collide(arena, player)) {
         arena.forEach(row => row.fill(0))
+        alert("GAME OVER!");
         player.score = 0;
         updateScore();
     }
