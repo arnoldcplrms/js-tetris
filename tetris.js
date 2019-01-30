@@ -123,6 +123,21 @@ const merge = (arena, player) => {
     })
 }
 
+const instantDrop = () => {
+    while (!collide(arena, player)) {
+        player.pos.y++;
+        if (collide(arena, player)) {
+            player.pos.y--;
+            merge(arena, player);
+            playerReset();
+            arenaSweep();
+            updateScore();
+            break;
+        }
+        dropCounter = 0;
+    }
+}
+
 const playerDrop = () => {
     player.pos.y++;
     if (collide(arena, player)) {
@@ -256,7 +271,8 @@ document.addEventListener('keydown', event => {
         case 87:
             playerRotate(1);
             break;
-
+        case 32:
+            instantDrop();
         default:
             break;
     }
